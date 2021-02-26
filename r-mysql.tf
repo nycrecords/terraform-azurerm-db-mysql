@@ -8,7 +8,6 @@ provider "mysql" {
   tls = var.force_ssl
 }
 
-
 data "azurerm_resource_group" "rg" {
   name = var.resource_group_name
 }
