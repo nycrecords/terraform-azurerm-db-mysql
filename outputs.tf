@@ -33,10 +33,6 @@ output "mysql_server_name" {
   description = "MySQL server name"
 }
 
-output "mysql_vnet_rule_ids" {
-  value       = azurerm_mysql_virtual_network_rule.vnet_rules[*].id
-  description = "The list of all vnet rule resource ids"
-}
 output "mysql_databases_users" {
   description = "List of usernames of created users corresponding to input databases names."
   value       = local.db_users_login
