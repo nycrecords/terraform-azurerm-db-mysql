@@ -1,7 +1,18 @@
+data "azurerm_resource_group" "rg" {
+  name = var.resource_group_name
+}
+
+module "azure-region" {
+  source  = "claranet/regions/azurerm"
+  version = "4.1.0"
+
+  azure_region = var.azure_region
+}
+
 resource "azurerm_mysql_server" "mysql_server" {
   name = local.mysql_server_name
 
-  location            = var.location
+  location            = data.azurerm_resource_group.rg.location
   resource_group_name = var.resource_group_name
 
   sku_name = join("_", [lookup(local.tier_map, var.tier, "GeneralPurpose"), "Gen5", var.capacity])

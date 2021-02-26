@@ -1,15 +1,10 @@
-variable "client_name" {
-  description = "Name of client"
-  type        = string
-}
-
 variable "environment" {
   description = "Name of application's environnement"
   type        = string
 }
 
-variable "stack" {
-  description = "Name of application stack"
+variable "app" {
+  description = "Name of application"
   type        = string
 }
 
@@ -18,18 +13,15 @@ variable "resource_group_name" {
   type        = string
 }
 
-variable "location" {
-  description = "Azure location for Key Vault."
+variable "azure_region" {
+  description = "Azure Region in slug format"
   type        = string
+  default     = "us-east-2"
 }
 
-variable "location_short" {
-  description = "Short string for Azure location."
-  type        = string
-}
 
 variable "name_prefix" {
-  description = "Optional prefix for PostgreSQL server name"
+  description = "Optional prefix for MySQL server name"
   type        = string
   default     = ""
 }
@@ -53,12 +45,6 @@ variable "administrator_password" {
 variable "allowed_cidrs" {
   type        = list(string)
   description = "List of authorized cidrs"
-}
-
-variable "allowed_subnets" {
-  type        = list(string)
-  description = "List of authorized subnet ids"
-  default     = []
 }
 
 variable "extra_tags" {
@@ -127,6 +113,7 @@ variable "force_ssl" {
 variable "databases_names" {
   description = "List of databases names"
   type        = list(string)
+  default     = []
 }
 
 variable "databases_charset" {
@@ -159,8 +146,14 @@ variable "logs_storage_retention" {
   default     = "30"
 }
 
-variable "logs_storage_account_id" {
-  description = "Storage Account id for logs"
+variable "logs_storage_account_name" {
+  description = "Storage Account Name for logs"
+  type        = string
+  default     = ""
+}
+
+variable "logs_storage_account_resource_group" {
+  description = "Storage Account resource group for logs"
   type        = string
   default     = ""
 }
