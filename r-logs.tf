@@ -6,7 +6,7 @@ data "azurerm_storage_account" "storage_account" {
 resource "azurerm_monitor_diagnostic_setting" "log_settings_storage" {
   count = var.enable_logs_to_storage ? 1 : 0
 
-  name               = "logs-storage"
+  name               = "${local.mysql_server_name}-logs-storage"
   target_resource_id = azurerm_mysql_server.mysql_server.id
 
   storage_account_id = data.azurerm_storage_account.storage_account.id
